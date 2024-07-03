@@ -8,7 +8,11 @@ Dataset: The primary dataset used for this analysis is the "Nashville Housing Da
 
 ### Nashville Housing Data Cleaning in SQL Queries
 ```sql
+
+-------------------------------------------------------------------------------------------------
 --1. STANDARDIZE DATE FORMAT:
+
+Select * from nashvillehousing
 
 
 alter table nashvilleHousing
@@ -17,20 +21,26 @@ add Salesdate Date
 Update nashvilleHousing
 set Salesdate=convert(Date, Saledate)
 
-
+----------------------------------------------------------------------------------------------------
 --2. POPULATE PROPERTY ADDRESS DATA: 
 
-select a.ParcelID,a.PropertyAddress,b.ParcelID,b.PropertyAddress ,
-isnull(a.PropertyAddress,b.PropertyAddress)    from nashvilleHousing a
+select a.ParcelID,a.PropertyAddress,b.ParcelID,
+b.PropertyAddress ,
+isnull(a.PropertyAddress,b.PropertyAddress)
+from nashvilleHousing a
 join nashvilleHousing b
 on a.parcelid=b.parcelid and a.[UniqueID ]<>b.[UniqueID ]
 where a.PropertyAddress is null
 
+
 update a
-set a.PropertyAddress=isnull(a.PropertyAddress,b.PropertyAddress)    from nashvilleHousing a
+set a.PropertyAddress=isnull(a.PropertyAddress,b.PropertyAddress)
+from nashvilleHousing a
 join nashvilleHousing b
 on a.parcelid=b.parcelid and a.[UniqueID ]<>b.[UniqueID ]
 where a.PropertyAddress is null
+
+----------------------------------------------------------------------------------------------------
 
 --3. BREAKING OUT ADDRESS INTO INDIVIDUAL COLUMNS(Address, City, State):
 
@@ -73,6 +83,7 @@ Add State  nvarchar(255)
 Update nashvilleHousing
 set State=parsename(replace(owneraddress,',','.'),1)
 
+--------------------------------------------------------------------------------------------------------------
 --4. CHANGE Y AND N TO YES AND NO USING CASE STATEMENT:
 
 Alter Table nashvilleHousing
@@ -83,22 +94,28 @@ set SoldVacant= case when Soldasvacant =Y Then 'Yes'
 		  when Soldasvacant =N Then 'NO'
 		  Else SoldAsVacant
 
-
+---------------------------------------------------------------------------------------------------------------
 --5. REMOVED DUPLICATES:
+
 with cte as
 (
-Select *, ROW_NUMBER() over (partition by parcelid,propertyaddress,saleprice,saledate,legalreference
-order by parcelid,propertyaddress,saleprice,saledate,legalreference )Row_Num
+Select *, ROW_NUMBER() over (partition by parcelid,
+propertyaddress,saleprice,saledate,legalreference
+order by parcelid,propertyaddress,saleprice,
+saledate,legalreference )Row_Num
 from nashvilleHousing
 )
 select * from cte
 where Row_Num >1
 
+----------------------------------------------------------------------------------------------------------------
 --6. DELETE UNUSED COLUMNS:
+
 
 Alter Table nashvilleHousing
 Drop column propertyaddress,TaxDistrict,Saledate,owneraddress,Soldasvacant
 
+-----------------------------------------------------------------------------------------------------------------
 ```
 
 
