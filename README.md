@@ -7,28 +7,20 @@ Dataset: The primary dataset used for this analysis is the "Nashville Housing Da
 - SQL Server Management Studio(SSMS)
 
 ### Tasks:
-- Data Inspection:
+- Data Inspection
   Identify and document data quality issues such as Null values, duplicates and data entry errors.
 - Data Cleaning:
   Use SQL to remove duplicates, fill in missing values and corrext data entry errors.
 - Data Transformation:
   Create new columns, update relevant columns and delete unwanted columns to facilitate analysis
 
-  ### SQL Skilss Used:
-  - SELECT statements with filters and sorting
-  - UPDATE and DELETE statements for data cleaning
-  - SELF JOINS and CTEs for data transformation
+### SQL Skills Used:
+  - **SELECT** statements with filters and sorting:
+  - **UPDATE**, **DELETE**  and **CASE** statements for data cleaning
+  - **SELF JOINS**,**CTEs**  and **WINDOW** functions for data transformation
 
-
-
-
-
-
-
-
-
-
-
+### Conclusion:
+This project demonstrates my ability to use SQL for data cleaning and transformation, which is an essential skill for any data analyst
 
 ### Nashville Housing Data Cleaning in SQL Queries
 ```sql
