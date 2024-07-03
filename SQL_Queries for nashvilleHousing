@@ -1,3 +1,4 @@
+```sql
 --1. STANDARDIZE DATE FORMAT:
 
 
@@ -88,3 +89,5 @@ where Row_Num >1
 
 Alter Table nashvilleHousing
 Drop column propertyaddress,TaxDistrict,Saledate,owneraddress,Soldasvacant
+
+```
