@@ -1,2 +1,3 @@
-# Data_Cleaning_With_SQL
-This project is about using SQL  to clean ,transform and preprocess the nashville data housing dataset
+# Data Cleaning With SQL
+### Project-Overview
+This projects aims to clean,transform and preprocess a housing dataset using SQL to prepare it for analysis and visualization
