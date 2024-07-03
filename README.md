@@ -69,13 +69,17 @@ set State=parsename(replace(owneraddress,',','.'),1)
 4.
 CHANGE Y AND N TO YES AND NO USING CASE STATEMENT:
 
+```sql
 Alter Table nashvilleHousing
 Add SoldVacant  nvarchar(255)
+```
 
+```sql
 Update nashvilleHousing
 set SoldVacant= case when Soldasvacant =Y Then 'Yes'
 		  when Soldasvacant =N Then 'NO'
 		  Else SoldAsVacant
+```
 
 5.
 REMOVED DUPLICATES:
