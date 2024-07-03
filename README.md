@@ -10,6 +10,8 @@ Dataset: The primary dataset used for this analysis is the "Nashville Housing Da
 
 1.
 STANDARDIZE DATE FORMAT:
+
+```sql
 alter table nashvilleHousing
 add Salesdate Date
 
@@ -53,13 +55,13 @@ Add PropertyOwnerAddress  nvarchar(255)
 --For Address
 Update nashvilleHousing
 set PropertyOwnerAddress=parsename(replace(owneraddress,',','.'),3)
----For City
+-For City
 Alter Table nashvilleHousing
 Add Owners_City  nvarchar(255)
 
 Update nashvilleHousing
 set Owners_City=parsename(replace(owneraddress,',','.'),2)
----For State
+-For State
 Alter Table nashvilleHousing
 Add State  nvarchar(255)
 
@@ -69,17 +71,16 @@ set State=parsename(replace(owneraddress,',','.'),1)
 4.
 CHANGE Y AND N TO YES AND NO USING CASE STATEMENT:
 
-```sql
 Alter Table nashvilleHousing
 Add SoldVacant  nvarchar(255)
-```
 
-```sql
+
+
 Update nashvilleHousing
 set SoldVacant= case when Soldasvacant =Y Then 'Yes'
 		  when Soldasvacant =N Then 'NO'
 		  Else SoldAsVacant
-```
+
 
 5.
 REMOVED DUPLICATES:
@@ -100,6 +101,7 @@ DELETE UNUSED COLUMNS:
 Alter Table nashvilleHousing
 Drop column propertyaddress,TaxDistrict,Saledate,owneraddress,Soldasvacant
 
+```
 
 
 
