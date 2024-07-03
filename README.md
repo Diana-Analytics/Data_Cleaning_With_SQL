@@ -8,7 +8,7 @@ Dataset: The primary dataset used for this analysis is the "Nashville Housing Da
 
 ### Tasks:
 - Data Inspection
-  Identify and document data quality issues such as Null values, duplicates and data entry errors.
+  Identify and document data quality issues such as Null values, duplicates and standardize date values.
 - Data Cleaning:
   Use SQL to remove duplicates, fill in missing values and corrext data entry errors.
 - Data Transformation:
