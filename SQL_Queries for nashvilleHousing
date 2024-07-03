@@ -5,65 +5,62 @@ STANDARDIZE DATE FORMAT:
 ```sql
 alter table nashvilleHousing
 add Salesdate Date
-```
 
-```sql
+
 Update nashvilleHousing
 set Salesdate=convert(Date, Saledate)
-```
 
 POPULATE PROPERTY ADDRESS DATA: 
 
-```sql
+
 select a.ParcelID,a.PropertyAddress,b.ParcelID,b.PropertyAddress ,
 isnull(a.PropertyAddress,b.PropertyAddress)    from nashvilleHousing a
 join nashvilleHousing b
 on a.parcelid=b.parcelid and a.[UniqueID ]<>b.[UniqueID ]
 where a.PropertyAddress is null
-```
 
-```sql
+
 update a
 set a.PropertyAddress=isnull(a.PropertyAddress,b.PropertyAddress)    from nashvilleHousing a
 join nashvilleHousing b
 on a.parcelid=b.parcelid and a.[UniqueID ]<>b.[UniqueID ]
 where a.PropertyAddress is null
-```
+
 
 3.
 BREAKING OUT ADDRESS INTO INDIVIDUAL COLUMNS(Address, City, State):
 
-```sql
+
 Alter table nashvilleHousing
 add Asset_Address varchar(255)
-```
 
-```sql
+
+
 update nashvilleHousing
 set Asset_Address=parsename(REPLACE(propertyaddress,',','.'),2)
-```
 
 
-```sql
+
+
 Alter table nashvilleHousing
 add City varchar(255)
 ```
 
-```sql
+
 update nashvilleHousing
 set City=parsename(REPLACE(propertyaddress,',','.'),1)
-```
 
-```sql
+
 Alter Table nashvilleHousing
 Add PropertyOwnerAddress  nvarchar(255)
-```
---For Address
-```sql
+
+
+-For Address
+
 Update nashvilleHousing
 set PropertyOwnerAddress=parsename(replace(owneraddress,',','.'),3)
-```
----For City
+
+-For City
 Alter Table nashvilleHousing
 Add Owners_City  nvarchar(255)
 
