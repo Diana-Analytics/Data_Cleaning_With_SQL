@@ -1,4 +1,4 @@
-
+---SQL Queries for Cleaning nashvilleHousing dataset
 -------------------------------------------------------------------------------------------------
 --1. STANDARDIZE DATE FORMAT:
 
